@@ -5,8 +5,10 @@
 int main (int argc, char **argv) {
 
     struct chip8 chip8;
-     chip8_memory_set(&chip8.memory, 0x400, 'Z');
-     
+    chip8.registers.V[0x0f] = 50;
+    
+    chip8_memory_set(&chip8.memory, 0x400, 'Z');
+
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_Window *window = SDL_CreateWindow(
         EMULATOR_WINDOW_TITLE,
