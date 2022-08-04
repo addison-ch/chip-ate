@@ -11,5 +11,6 @@
 #define EMULATOR_SCALE 10 // window multiplier
 
 #define NUM_DATA_REGISTERS 16
+#define STACK_DEPTH 16
 
 #endif
