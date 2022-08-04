@@ -3,7 +3,7 @@
 
 #include "config.h"
 
-struct chip8_registers {
+struct registers {
     unsigned char V[NUM_DATA_REGISTERS];
     unsigned short I;
     unsigned char delay_timer;
