@@ -5,11 +5,12 @@
 #include "chip8_memory.h"
 #include "registers.h"
 #include "stack.h"
-
+#include "keyboard.h"
 struct chip8 {
  struct chip8_memory memory;
  struct registers registers;
  struct stack stack;
+ struct keyboard keyboard;
 
 };
 
