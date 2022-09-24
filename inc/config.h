@@ -3,8 +3,8 @@
 
 
 #define CHIP8_MEMORY_SIZE 4096
-#define CHIP8_WIDTH 64
-#define CHIP8_HEIGHT 32
+#define WIDTH 64
+#define HEIGHT 32
 
 #define EMULATOR_WINDOW_TITLE "CHIP-8 Emulator"
 
@@ -12,5 +12,7 @@
 
 #define NUM_DATA_REGISTERS 16
 #define STACK_DEPTH 16
+
+#define FONT_SET_START 0x00
 
 #endif

@@ -3,6 +3,7 @@
 #include "SDL2/SDL.h"
 #include "chip8.h"
 #include "keyboard.h"
+#include "screen.h"
 
 const char keyboard_map[TOTAL_KEYS] = {
     SDLK_0, SDLK_1, SDLK_2, 
@@ -17,48 +18,60 @@ int main (int argc, char **argv) {
 
     struct chip8 chip8;
     chip8_initialize(&chip8);
-    
+
+    toggle_pixel(&chip8.screen, 0, 0);
+
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_Window *window = SDL_CreateWindow(
         EMULATOR_WINDOW_TITLE,
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED, 
-        CHIP8_WIDTH * EMULATOR_SCALE, 
-        CHIP8_HEIGHT * EMULATOR_SCALE, 
+        WIDTH * EMULATOR_SCALE, 
+        HEIGHT * EMULATOR_SCALE, 
         SDL_WINDOW_SHOWN);
 
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_TEXTUREACCESS_TARGET);
+
     while (1) {
+
         SDL_Event event;
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
                 goto out;
-            } else if (event.type == SDL_KEYDOWN) {
+            } 
+            else if (event.type == SDL_KEYDOWN) {
                 char k = event.key.keysym.sym;
                 int mapped_key = convert_key(keyboard_map, k);
                 if (mapped_key != -1) {
                     keyboard_press(&chip8.kb, mapped_key);
                 }
-            } else if (event.type == SDL_KEYUP) {
+            } 
+            else if (event.type == SDL_KEYUP) {
                 char k = event.key.keysym.sym;
                 int mapped_key = convert_key(keyboard_map, k);
                 if (mapped_key != -1) {
                     keyboard_lift(&chip8.kb, mapped_key);
                 }
-
             }
         }
+
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_RenderClear(renderer);
-        SDL_SetRenderDrawColor(renderer, 20, 80, 30, 0);
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 0);
 
-        SDL_Rect r;
-        r.x = 0;
-        r.y = 0;
-        r.w = 40;
-        r.h = 40;
+        for (int x = 0; x < WIDTH; x++) {
+            for (int y = 0; y < HEIGHT; y++) {
+                if (check_pixel(&chip8.screen, x, y) == true) {
+                    SDL_Rect r;
+                    r.x = x * EMULATOR_SCALE;
+                    r.y = y * EMULATOR_SCALE;
+                    r.w = EMULATOR_SCALE;
+                    r.h = EMULATOR_SCALE;
+                    SDL_RenderFillRect(renderer, &r);
+                }
+            }
+        }
 
-        SDL_RenderFillRect(renderer, &r);
         SDL_RenderPresent(renderer);
     }
     out:
