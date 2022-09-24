@@ -11,4 +11,6 @@ struct screen {
 void toggle_pixel(struct screen* screen, int x, int y);
 bool check_pixel(struct screen* screen, int x, int y);
 
+bool draw_sprite(struct screen* screen, int x, int y, const char* sprite, int num);
+
 #endif

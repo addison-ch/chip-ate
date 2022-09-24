@@ -19,7 +19,7 @@ int main (int argc, char **argv) {
     struct chip8 chip8;
     chip8_initialize(&chip8);
 
-    toggle_pixel(&chip8.screen, 0, 0);
+    draw_sprite(&chip8.screen, 32, 60, &chip8.memory.memory[0x00], 5);
 
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_Window *window = SDL_CreateWindow(
@@ -74,6 +74,7 @@ int main (int argc, char **argv) {
 
         SDL_RenderPresent(renderer);
     }
+    
     out:
     SDL_DestroyWindow(window);
     return 0;
