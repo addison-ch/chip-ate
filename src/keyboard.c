@@ -1,4 +1,5 @@
 #include "keyboard.h"
+#include <assert.h>
 
 static void check_key_bounds (int key) {
     assert(key >= 0 && key < TOTAL_KEYS);
