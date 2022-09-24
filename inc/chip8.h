@@ -15,4 +15,6 @@ struct chip8 {
 
 };
 
+void chip8_initialize(struct chip8* chip8);
+
 #endif

@@ -16,9 +16,8 @@ const char keyboard_map[TOTAL_KEYS] = {
 int main (int argc, char **argv) {
 
     struct chip8 chip8;
-    keyboard_press(&chip8.kb, 0x0f);
-    printf("%i\n", keyboard_is_pressed(&chip8.kb, 0x0f));
-
+    chip8_initialize(&chip8);
+    
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_Window *window = SDL_CreateWindow(
         EMULATOR_WINDOW_TITLE,
