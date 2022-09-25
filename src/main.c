@@ -48,7 +48,6 @@ int main (int argc, char **argv) {
     chip8_initialize(&chip8);
     chip8_load(&chip8, buffer, size);
 
-    draw_sprite(&chip8.screen, 32, 60, &chip8.memory.RAM[0x00], 5);
 
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_Window *window = SDL_CreateWindow(
@@ -106,17 +105,16 @@ int main (int argc, char **argv) {
         if (chip8.registers.delay_timer > 0) {
             Sleep(100);
             chip8.registers.delay_timer -= 1;
-            printf("DELAY!\n");
         }
         if (chip8.registers.sound_timer > 0) {
-            Beep(8000, 100);
+            Beep(15000, 100 * chip8.registers.sound_timer);
             chip8.registers.sound_timer -= 1;
-            printf("DELAY!\n");
         }
 
         unsigned short opcode = memory_get_opcode(&chip8.memory, chip8.registers.PC);
-        chip8_execute(&chip8, opcode);
         chip8.registers.PC += 2;
+        chip8_execute(&chip8, opcode);
+        
 
         // printf("%x\n", opcode);
     }

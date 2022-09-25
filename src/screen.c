@@ -16,6 +16,10 @@ bool check_pixel(struct screen* screen, int x, int y) {
     return screen->display[y][x];
 }
 
+void clear_screen(struct screen* screen) {
+    memset(screen->display, 0, sizeof(screen->display));
+}
+
 bool draw_sprite(struct screen* screen, int x, int y, const char* sprite, int num) {
     bool pixel_overlap = false;
 
