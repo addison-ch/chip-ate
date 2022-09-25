@@ -1,5 +1,7 @@
 #include "chip8.h"
 #include <memory.h>
+#include <assert.h>
+#include "config.h"
 
 const char font_set[80] = {
     0xf0, 0x90, 0x90, 0x90, 0xf0,
@@ -20,8 +22,19 @@ const char font_set[80] = {
     0xf0, 0x80, 0xf0, 0x80, 0x80
 };
 
-void chip8_initialize(struct chip8* chip8)
-{
+void chip8_initialize(struct chip8* chip8) {
+
     memset(chip8, 0, sizeof(struct chip8));
-    memcpy(chip8->memory.memory, font_set, sizeof(font_set));
+    memcpy(chip8->memory.RAM, font_set, sizeof(font_set));
+}
+
+void chip8_load(struct chip8* chip8, const char* buf, size_t size) {
+    assert(size+LOAD_ADDRESS < MEMORY_SIZE);
+
+    memcpy(&chip8->memory.RAM[LOAD_ADDRESS], buf, size);
+    chip8->registers.PC = LOAD_ADDRESS;
+}
+
+void chip8_execute(struct chip8* chip8, unsigned short opcode) {
+
 }

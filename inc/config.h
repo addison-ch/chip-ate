@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 
-#define CHIP8_MEMORY_SIZE 4096
+#define MEMORY_SIZE 4096
 #define WIDTH 64
 #define HEIGHT 32
 
@@ -14,5 +14,7 @@
 #define STACK_DEPTH 16
 
 #define FONT_SET_START 0x00
+
+#define LOAD_ADDRESS 0x200
 
 #endif
