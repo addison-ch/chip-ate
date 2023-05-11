@@ -5,7 +5,6 @@ static void check_key_bounds (int key) {
     assert(key >= 0 && key < TOTAL_KEYS);
 }
 
-
 void kb_set_map (struct keyboard* kb, const char* map) {
     kb->mapping = map;
 }
