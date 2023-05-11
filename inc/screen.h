@@ -10,7 +10,7 @@ struct screen {
 
 void toggle_pixel(struct screen* screen, int x, int y);
 bool check_pixel(struct screen* screen, int x, int y);
-void clear_screen(struct chip8_screen* screen);
+void clear_screen(struct screen* screen);
 bool draw_sprite(struct screen* screen, int x, int y, const char* sprite, int num);
 
 #endif

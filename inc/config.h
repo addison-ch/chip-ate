@@ -17,4 +17,6 @@
 
 #define LOAD_ADDRESS 0x200
 
+#define SPRITE_HEIGHT 5
+
 #endif

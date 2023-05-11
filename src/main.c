@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <Windows.h>
+#include <time.h>
 
 #include "SDL2/SDL.h"
 #include "chip8.h"
@@ -48,7 +49,7 @@ int main (int argc, char **argv) {
     struct chip8 chip8;
     chip8_initialize(&chip8);
     chip8_load(&chip8, buffer, size);
-
+    kb_set_map(&chip8.kb, keyboard_map);
 
     SDL_Init(SDL_INIT_EVERYTHING);
     SDL_Window *window = SDL_CreateWindow(
@@ -70,14 +71,14 @@ int main (int argc, char **argv) {
             } 
             else if (event.type == SDL_KEYDOWN) {
                 char k = event.key.keysym.sym;
-                int mapped_key = convert_key(keyboard_map, k);
+                int mapped_key = convert_key(&chip8.kb, k);
                 if (mapped_key != -1) {
                     keyboard_press(&chip8.kb, mapped_key);
                 }
             } 
             else if (event.type == SDL_KEYUP) {
                 char k = event.key.keysym.sym;
-                int mapped_key = convert_key(keyboard_map, k);
+                int mapped_key = convert_key(&chip8.kb, k);
                 if (mapped_key != -1) {
                     keyboard_lift(&chip8.kb, mapped_key);
                 }
