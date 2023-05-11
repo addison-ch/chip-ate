@@ -113,7 +113,7 @@ int main (int argc, char **argv) {
 
         unsigned short opcode = memory_get_opcode(&chip8.memory, chip8.registers.PC);
         chip8.registers.PC += 2;
-        chip8_execute(&chip8, opcode);
+        execute(&chip8, opcode);
         
 
         // printf("%x\n", opcode);
