@@ -5,9 +5,14 @@ static void check_key_bounds (int key) {
     assert(key >= 0 && key < TOTAL_KEYS);
 }
 
-int convert_key (const char* map, char key) {
+
+void set_map (struct keyboard* kb, const char* map) {
+    kb->mapping = map;
+}
+
+int convert_key (struct keyboard* kb, char key) {
     for (int i = 0; i < TOTAL_KEYS; i++) {
-        if (map[i] == key) {
+        if (kb->mapping[i] == key) {
             return i;
         }
     }

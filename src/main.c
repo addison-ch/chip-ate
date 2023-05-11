@@ -17,6 +17,7 @@ const char keyboard_map[TOTAL_KEYS] = {
 };
 
 int main (int argc, char **argv) {
+    srand(time(NULL));
 
     if (argc < 2) {
         printf("You must provide a file to load\n");
