@@ -1,5 +1,7 @@
 # 🕹 chip-ate
-CHIP-8 interpreter developed with C
+Interpreter / emulator for the CHIP-8 able to run all the classic 1970s CHIP-8 games (provided you have the rom 😁)
+
+![demo](https://raw.githubusercontent.com/addison-ch/chip-ate/main/INVADERS.png)
 
 
 # 📝 Resources used
